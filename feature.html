@@ -1,0 +1,33 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Set up the WebDriver (using Chrome in this example)
+driver = webdriver.Chrome(executable_path='/path/to/chromedriver')
+
+# Navigate to the login page
+driver.get('https://example.com/login')
+
+# Locate username and password fields and submit button
+username_field = driver.find_element_by_name('username')
+password_field = driver.find_element_by_name('password')
+submit_button = driver.find_element_by_id('login-btn')
+
+# Enter login credentials
+username_field.send_keys('your_username')
+password_field.send_keys('your_password')
+
+# Click the login button
+submit_button.click()
+
+# Introduce a delay to observe the result (you might use WebDriverWait in a real scenario)
+time.sleep(2)
+
+# Verify successful login (check if a welcome message or dashboard page is displayed)
+if "Welcome" in driver.page_source:
+    print("Login successful!")
+else:
+    print("Login failed!")
+
+# Close the browser window
+driver.quit()
